@@ -42,8 +42,8 @@ double calculateV2(double V2, double A2, double A1, double g, double h, double a
 }
 
 int main() {
-    double A2 = (32 * 26) * pow(10, -6);            // Example value for A2
-    double A1 = 0.00004951432;            // Example value for A1
+    double A1 = (32 * 26) * pow(10, -4);            // Example value for A1
+    double A2 = 1.98 * pow(10, -4);            // Example value for A2
     double g = 9.81;          // Acceleration due to gravity in m/s^2
     double h = 0.1;            // Example value for h
     double alpha = 1;         // Example value for alpha
