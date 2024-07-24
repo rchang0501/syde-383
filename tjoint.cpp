@@ -10,11 +10,11 @@ const double hi = 0.08;  // the initial height from free surface to the 2 cm mar
 
 const double alpha = 1;            // alpha assume for 1
 const double D = 0.00794;          // Example value for D
-const double K = 0.5;              // Example value for K
+const double K = 1.8;              // Example value for K = 0.5 + (0.7 or 0.9)
 const double epsilon = 0.0000025;  // Example value for pipe roughness
 const double rho = 998;            // Example value for fluid density in kg/m^3
 const double mu = 0.001;           // Example value for dynamic viscosity in Pa.s
-const double tolerance = 1e-5;     // Tolerance for convergence
+const double tolerance = 1e-4;     // Tolerance for convergence
 
 void print_time(double t) {
     int minutes = static_cast<int>(t) / 60;
@@ -65,7 +65,7 @@ void time_to_drain(double L) {
     double h = hi;  // the current height of the free surface
 
     while (h >= 0) {
-        int max_its = 1000;
+        int max_its = 100;
         int curr_it = 0;
         while (curr_it < max_its) {
             // calculate with loss
@@ -93,9 +93,11 @@ void time_to_drain(double L) {
     print_time(total_t);
     cout << endl;
 }
+// time for 20 cm: 3 min 24 sec
 
 int main() {
-    vector<double> lengths = {0.2, 0.3, 0.4, 0.6};
+    // vector<double> lengths = {0.2, 0.3, 0.4, 0.6};
+    vector<double> lengths = {0.2, 0.4};
 
     for (auto L : lengths) {
         time_to_drain(L);
