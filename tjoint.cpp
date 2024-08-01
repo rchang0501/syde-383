@@ -10,7 +10,7 @@ const double hi = 0.08;  // the initial height from free surface to the 2 cm mar
 
 const double alpha = 1;            // correction factor
 const double D = 0.00794;          // diameter of pipe
-const double K = 1.8;              // coefficient of minor loss 0.5 + 1.3 (textbook value of collection of loses from a t joint)
+const double K = 1.8;              // coefficient of minor loss (textbook value of collection of loses from a t joint)
 const double epsilon = 0.0000025;  // pipe roughness
 const double rho = 998;            // fluid density in kg/m^3
 const double mu = 0.001;           // dynamic viscosity in Pa.s
