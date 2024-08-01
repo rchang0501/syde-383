@@ -2,18 +2,18 @@
 
 using namespace std;
 
-const double A1 = 0.32 * 0.26;                               // Example value for A1
-const double A2 = pow(11.25 * pow(10, -3) / 2.0, 2) * M_PI;  // Example value for A2
-const double g = 9.81;                                       // Acceleration due to gravity in m/s^2
+const double A1 = 0.32 * 0.26;                               // area of inlet
+const double A2 = pow(11.25 * pow(10, -3) / 2.0, 2) * M_PI;  // area of outlet
+const double g = 9.81;                                       // gravity
 
 const double hi = 0.08;  // the initial height from free surface to the 2 cm mark
 
-const double alpha = 1;            // alpha assume for 1
-const double D = 0.00794;          // Example value for D
-const double K = 1.8;              // Example value for K = 0.5 + (0.7 or 0.9)
-const double epsilon = 0.0000025;  // Example value for pipe roughness
-const double rho = 998;            // Example value for fluid density in kg/m^3
-const double mu = 0.001;           // Example value for dynamic viscosity in Pa.s
+const double alpha = 1;            // correction factor
+const double D = 0.00794;          // diameter of pipe
+const double K = 1.8;              // coefficient of minor loss
+const double epsilon = 0.0000025;  // pipe roughness
+const double rho = 998;            // fluid density in kg/m^3
+const double mu = 0.001;           // dynamic viscosity in Pa.s
 const double tolerance = 1e-4;     // Tolerance for convergence
 
 void print_time(double t) {
@@ -56,7 +56,7 @@ double calculateV2(double v2, double h, double L, bool no_loss) {
 
 void time_to_drain(double L) {
     double v1 = 0;
-    double v2 = 0.01;  // Initial guess for v2 - 0.53
+    double v2 = 0.01;
     double v2_res = 0;
 
     const double delta_t = 0.1;
@@ -68,7 +68,6 @@ void time_to_drain(double L) {
         int max_its = 100;
         int curr_it = 0;
         while (curr_it < max_its) {
-            // calculate with loss
             v2_res = calculateV2(v2, h, L, false);
             double error = fabs(v2 - v2_res);
 
@@ -88,7 +87,6 @@ void time_to_drain(double L) {
 }
 
 int main() {
-    // vector<double> lengths = {0.2, 0.3, 0.4, 0.6};
     vector<double> lengths = {0.2, 0.4};
 
     for (auto L : lengths) {
