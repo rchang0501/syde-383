@@ -56,8 +56,8 @@ double calculateV2(double v2, double h, double L, bool no_loss) {
 
 void time_to_drain(double L) {
     double v1 = 0;
-    double v2 = 0.01;
-    double v2_res = 0;
+    double v2 = 0.01;   // guess for v2
+    double v2_res = 0;  // result for v2
 
     const double delta_t = 0.1;
     double total_t = 0;
@@ -77,7 +77,7 @@ void time_to_drain(double L) {
         }
         v1 = v2_res * (A2 / A1);
 
-        h -= delta_t * v1;
+        h -= delta_t * v1;  // decrease height of free surface
         total_t += delta_t;
     }
 
