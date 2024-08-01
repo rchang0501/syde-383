@@ -72,15 +72,8 @@ void time_to_drain(double L) {
             v2_res = calculateV2(v2, h, L, false);
             double error = fabs(v2 - v2_res);
 
-            // cout << "v2: " << v2 << endl;
-            // cout << "v2_res: " << v2_res << endl;
-            // cout << "error: " << error << endl;
-            // cout << endl;
+            if (error <= tolerance) break;
 
-            if (error <= tolerance) {
-                // cout << "converged!" << endl;
-                break;
-            }
             v2 = v2_res;
         }
         v1 = v2_res * (A2 / A1);

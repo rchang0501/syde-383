@@ -2,9 +2,9 @@
 
 using namespace std;
 
-const double A1 = 0.32 * 0.26;           // Example value for A1
-const double A2 = 4.9514 * pow(10, -5);  // Example value for A2
-const double g = 9.81;                   // Acceleration due to gravity in m/s^2
+const double A1 = 0.32 * 0.26;                               // Example value for A1
+const double A2 = pow(11.25 * pow(10, -3) / 2.0, 2) * M_PI;  // Example value for A2
+const double g = 9.81;                                       // Acceleration due to gravity in m/s^2
 
 const double hi = 0.08;  // the initial height from free surface to the 2 cm mark
 
@@ -72,15 +72,8 @@ void time_to_drain(double L) {
             v2_res = calculateV2(v2, h, L, false);
             double error = fabs(v2 - v2_res);
 
-            // cout << "v2: " << v2 << endl;
-            // cout << "v2_res: " << v2_res << endl;
-            // cout << "error: " << error << endl;
-            // cout << endl;
+            if (error <= tolerance) break;
 
-            if (error <= tolerance) {
-                // cout << "converged!" << endl;
-                break;
-            }
             v2 = v2_res;
         }
         v1 = v2_res * (A2 / A1);
@@ -93,7 +86,6 @@ void time_to_drain(double L) {
     print_time(total_t);
     cout << endl;
 }
-// time for 20 cm: 3 min 24 sec
 
 int main() {
     // vector<double> lengths = {0.2, 0.3, 0.4, 0.6};
