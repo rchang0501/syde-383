@@ -14,7 +14,7 @@ const double K = 1.8;              // coefficient of minor loss
 const double epsilon = 0.0000025;  // pipe roughness
 const double rho = 998;            // fluid density in kg/m^3
 const double mu = 0.001;           // dynamic viscosity in Pa.s
-const double tolerance = 1e-4;     // Tolerance for convergence
+const double tolerance = 1e-5;     // Tolerance for convergence
 
 void print_time(double t) {
     int minutes = static_cast<int>(t) / 60;
@@ -65,7 +65,7 @@ void time_to_drain(double L) {
     double h = hi;  // the current height of the free surface
 
     while (h >= 0) {
-        int max_its = 100;
+        int max_its = 1000;
         int curr_it = 0;
         while (curr_it < max_its) {
             v2_res = calculateV2(v2, h, L, false);
